@@ -1,33 +1,55 @@
-import csv
-import os
-from dotenv import load_dotenv
-from functions import convert_csv_to_json
+from typing import List, Optional
+from fastapi.responses import JSONResponse
 
-load_dotenv()
+from fastapi import FastAPI, HTTPException, status
 
-path_database = os.environ["DATABASE"]
+from model import Produto
 
+import uvicorn
 
-def list_items_all():
-    return convert_csv_to_json(path_database)
+app = FastAPI()
 
-def list_item_id():
-    return True
-
-def create_item():
-# with open(path_database, 'w', newline='') as file:
+store = {
     
-#     writer = csv.writer(file)
+    1: {
+        "nome": "Tomate",
+        "marca": "Hortifruti",
+        "codigo": "555",
+        "preco": 5.99,
+        "quantidade": 10,
+        "corredor": 12,
+        "prateleira": 5
+    },
     
-#     writer.writerow(["Id", "Pressao", "Temperatura", "Umidade"])
-#     writer.writerow([1, 15.6, 20.1, 30.3])       
-#     writer.writerow([2, 16.3, 19.8, 27.1])          
-#     writer.writerow([3, 15.3, 20.2, 28.3])          
-#     writer.writerow([4, 16.1, 20.5, 27.7])        
-#     writer.writerow([5, 15.8, 19.7, 29.2])
+    2: {
+        "nome": "Arroz",
+        "marca": "Sepe",
+        "codigo": "324",
+        "preco": 10.99,
+        "quantidade": 3,
+        "corredor": 3,
+        "prateleira": 9
+    }
+}
 
-    return True
+@app.get('/store')
+async def get_store():
+    return store
 
-def delete_item():
+@app.get('/store/{produto_id}')
+async def get_store(produto_id: int):
+    try:
+        produto = store[produto_id]
+        return produto
+    except KeyError:
+        raise HTTPException (
+            status_code=status.HTTP_404_NOT_FOUND, details='Curso não encontrado!')
+
+
+# @app.delete('/store/{produto_id}')
+# async def delete_produto(produto_id: int):
+        
+
+if __name__ == '__main__':
     
-    return True
+    uvicorn.run("main:app", host='0.0.0.0', port=8000, debug=True, reload=True)

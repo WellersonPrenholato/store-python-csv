@@ -1,6 +1,8 @@
 # Run
-run: 
-	uvicorn api:app --reload
+run:
+	python main.py
 
-menu:
-	python menu.py
+# uvicorn api:app --reload
+
+# menu:
+# 	python menu.py
