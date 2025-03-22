@@ -1,6 +1,6 @@
 id,nome,marca,codigo,preco,quantidade,corredor,prateleira
-2,Arroz,Sepe,324,10.99,3,3,9
-4,Macarrao,Barilla,789,8.5,7,4,6
-5,Azeite,Gallo,1010,20.9,2,1,2
-6,Feijao,Preto,222,7.99,3,12,6
-7,Tomate,Branca,18,3.99,2,11,8
+1,Arroz,Sepe,324,10.99,3,3,9
+2,Macarrao,Barilla,789,8.5,7,4,6
+3,Azeite,Gallo,1010,20.9,2,1,2
+4,Feijao,Preto,222,7.99,3,12,6
+5,Tomate,Branca,18,3.99,2,11,8
