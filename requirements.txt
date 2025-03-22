@@ -3,3 +3,4 @@ requests
 fastapi
 uvicorn
 pydantic==1.10.2
+pandas
